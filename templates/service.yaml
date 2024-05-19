@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "apache-chart.fullname" . }}
+  labels:
+    app: {{ include "apache-chart.name" . }}
+spec:
+  selector:
+    app: {{ include "apache-chart.name" . }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: 80
+  type: {{ .Values.service.type }}
